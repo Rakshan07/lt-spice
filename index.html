@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full-Wave Bridge Rectifier Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>⚡ Full-Wave <span>Bridge Rectifier</span> — Live Simulation</h1>
+  <div class="sub">AC in &rarr; 4 diodes &rarr; pulsating DC out &nbsp;|&nbsp; Press <b>Space</b> to pause</div>
+</header>
+
+<main>
+  <!-- LEFT -->
+  <div class="col">
+    <div class="card" style="flex:1">
+      <h2><span>Circuit (animated current flow)</span><span style="text-transform:none;letter-spacing:0">balls = conventional current</span></h2>
+      <div class="grow"><canvas id="circuit"></canvas></div>
+    </div>
+    <div class="card" id="status">
+      <h3 id="stTitle">…</h3>
+      <p id="stText"></p>
+      <div class="path" id="stPath"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="col">
+    <div class="card" style="flex:1">
+      <h2><span>Input waveform &nbsp;V<sub>in</sub> (AC)</span><span id="tagIn" style="color:var(--blue)">—</span></h2>
+      <div class="grow"><canvas id="chIn"></canvas></div>
+    </div>
+    <div class="card" style="flex:1">
+      <h2><span>Output waveform &nbsp;V<sub>out</sub> (across load)</span><span id="tagOut" style="color:var(--green)">—</span></h2>
+      <div class="grow"><canvas id="chOut"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="readouts">
+        <div class="ro"><small>V in (now)</small><b id="rIn">0.0 V</b></div>
+        <div class="ro"><small>V out (now)</small><b id="rOut">0.0 V</b></div>
+        <div class="ro"><small>V dc (average)</small><b id="rDc">—</b></div>
+        <div class="ro"><small>Ripple (p-p)</small><b id="rRip">—</b></div>
+      </div>
+      <div class="facts" id="facts" style="margin-top:6px"></div>
+    </div>
+  </div>
+</main>
+
+<div class="controls">
+  <div class="ctl">Input
+    <div class="seg" id="waveSeg">
+      <button data-w="sine" class="active">Sine</button>
+      <button data-w="square">Square</button>
+      <button data-w="triangle">Triangle</button>
+    </div>
+  </div>
+  <div class="ctl">Amplitude <input type="range" id="sVp" min="3" max="20" step="1" value="10"><output id="oVp">10 V</output></div>
+  <div class="ctl">Frequency <input type="range" id="sF" min="10" max="100" step="5" value="50"><output id="oF">50 Hz</output></div>
+  <div class="ctl">Load R <input type="range" id="sR" min="20" max="500" step="10" value="100"><output id="oR">100 Ω</output></div>
+  <div class="ctl">Diodes
+    <div class="seg" id="vdSeg">
+      <button data-v="0">Ideal</button>
+      <button data-v="0.7" class="active">0.7 V drop</button>
+    </div>
+  </div>
+  <div class="ctl">
+    <label class="chk"><input type="checkbox" id="cCap"> Filter capacitor</label>
+  </div>
+  <div class="ctl" id="capCtl">C <input type="range" id="sC" min="10" max="470" step="10" value="100"><output id="oC">100 µF</output></div>
+  <div class="ctl">Speed <input type="range" id="sSp" min="0.1" max="1.5" step="0.05" value="0.4"><output id="oSp">0.4×</output></div>
+  <button class="big primary" id="bPlay">⏸ Pause</button>
+  <button class="big" id="bRestart">↺ Restart</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
