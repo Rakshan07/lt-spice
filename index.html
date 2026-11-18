@@ -17,7 +17,7 @@
   <!-- LEFT -->
   <div class="col">
     <div class="card" style="flex:1">
-      <h2><span>Circuit (animated current flow)</span><span style="text-transform:none;letter-spacing:0">balls = conventional current</span></h2>
+      <h2><span>Bridge rectifier with transformer (animated current flow)</span><span style="text-transform:none;letter-spacing:0">balls = conventional current</span></h2>
       <div class="grow"><canvas id="circuit"></canvas></div>
     </div>
     <div class="card" id="status">
@@ -43,6 +43,7 @@
         <div class="ro"><small>V out (now)</small><b id="rOut">0.0 V</b></div>
         <div class="ro"><small>V dc (average)</small><b id="rDc">—</b></div>
         <div class="ro"><small>Ripple (p-p)</small><b id="rRip">—</b></div>
+        <div class="ro"><small>Ripple γ</small><b id="rGam" style="color:#ffd23f">—</b></div>
       </div>
       <div class="facts" id="facts" style="margin-top:6px"></div>
     </div>
@@ -57,19 +58,19 @@
       <button data-w="triangle">Triangle</button>
     </div>
   </div>
-  <div class="ctl">Amplitude <input type="range" id="sVp" min="3" max="20" step="1" value="10"><output id="oVp">10 V</output></div>
+  <div class="ctl">V1 peak <input type="range" id="sVp" min="5" max="20" step="1" value="10"><output id="oVp">10 V</output></div>
   <div class="ctl">Frequency <input type="range" id="sF" min="10" max="100" step="5" value="50"><output id="oF">50 Hz</output></div>
-  <div class="ctl">Load R <input type="range" id="sR" min="20" max="500" step="10" value="100"><output id="oR">100 Ω</output></div>
+  <div class="ctl">R1 <input type="range" id="sR" min="100" max="10000" step="100" value="5000"><output id="oR">5 kΩ</output></div>
   <div class="ctl">Diodes
     <div class="seg" id="vdSeg">
       <button data-v="0">Ideal</button>
-      <button data-v="0.7" class="active">0.7 V drop</button>
+      <button data-v="0.62" class="active">1N4148</button>
     </div>
   </div>
   <div class="ctl">
-    <label class="chk"><input type="checkbox" id="cCap"> Filter capacitor</label>
+    <label class="chk"><input type="checkbox" id="cCap" checked> Filter capacitor C1</label>
   </div>
-  <div class="ctl" id="capCtl">C <input type="range" id="sC" min="10" max="470" step="10" value="100"><output id="oC">100 µF</output></div>
+  <div class="ctl enabled" id="capCtl">C <input type="range" id="sC" min="1" max="100" step="1" value="5"><output id="oC">5 µF</output></div>
   <div class="ctl">Speed <input type="range" id="sSp" min="0.1" max="1.5" step="0.05" value="0.4"><output id="oSp">0.4×</output></div>
   <button class="big primary" id="bPlay">⏸ Pause</button>
   <button class="big" id="bRestart">↺ Restart</button>
